@@ -4,6 +4,6 @@
 start:
     EI
 loop:
-    LD A,R
     OUT (#FE), A
+    INC A
     JP loop
