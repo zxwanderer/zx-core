@@ -15,7 +15,7 @@
                     "--outprefix=${workspaceFolder}/out/",
                     "--lst=${workspaceFolder}/out/program.list",
                     "--fullpath",
-                    "${workspaceFolder}/src/main.asm"
+                    "${workspaceFolder}/make_sna.asm"
                 ],
             },
             "linux": {
@@ -27,7 +27,7 @@
                     "--outprefix=${workspaceFolder}/out/",
                     "--lst=${workspaceFolder}/out/program.list",
                     "--fullpath",
-                    "${workspaceFolder}/src/main.asm"
+                    "${workspaceFolder}/make_sna.asm"
                 ],
             },
             "problemMatcher": "$errmatcher-sjasmplus",

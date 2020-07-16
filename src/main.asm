@@ -20,12 +20,3 @@ LOOP2
 
 		DEC	A	;на единичку уменьшим A, чтобы следующий кадр отрисовывать с чего-то другого
 		JP	LOOP0	;зарисовали весь экран ерундой, начнем сначала, но уже с тем A, какой попадется
-
-	display 'PAGE0 end: ', $
-
-	display /d, 'Total bytes used: ', $ - start
-
-	; build
-	if (_ERRORS == 0 && _WARNINGS == 0)
-	  savesna 'program.sna', start			; SNA_FILENAME defined in Makefile
-	endif
