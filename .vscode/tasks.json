@@ -1,0 +1,54 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "make_sna",
+            "osx": {
+                "command": "${workspaceFolder}/engine/bin/osx/sjasmplus",
+                "args": [
+                    "--dos866",
+                    "--nofakes",
+                    "--dirbol",
+                    "--outprefix=${workspaceFolder}/out/",
+                    "--lst=${workspaceFolder}/out/program.list",
+                    "--fullpath",
+                    "${workspaceFolder}/src/main.asm"
+                ],
+            },
+            "linux": {
+                "command": "${workspaceFolder}/engine/bin/linux/sjasmplus",
+                "args": [
+                    "--dos866",
+                    "--nofakes",
+                    "--dirbol",
+                    "--outprefix=${workspaceFolder}/out/",
+                    "--lst=${workspaceFolder}/out/program.list",
+                    "--fullpath",
+                    "${workspaceFolder}/src/main.asm"
+                ],
+            },
+            "problemMatcher": "$errmatcher-sjasmplus",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "run_sna",
+            "osx": {
+                "command": "open -a 'Fuse' ${workspaceFolder}/out/program.sna"
+            },
+            "linux": {
+                "command": "flatpak run net.sf.fuse_emulator/x86_64/stable ${workspaceFolder}/out/program.sna"
+            },
+            "dependsOn": [
+                "make_sna"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
