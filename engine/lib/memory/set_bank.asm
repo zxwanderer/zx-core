@@ -31,7 +31,7 @@
 
 ; меняет BC
 MEMORY_SET_BANK:
-	ld (curBank),a
+	ld (MEMORY_CUR_BANK),a
 cur_scr:
 	; or %00000000
 	or 0x10
@@ -45,4 +45,4 @@ MEMORY_FLIP_SCREEN:
 	ld (cur_scr+1), a
 	ret
 
-curBank:    db 0
+MEMORY_CUR_BANK:    db 0
