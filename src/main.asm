@@ -12,11 +12,14 @@ cmd_ EQU $ - CmdTable
     ENDM
 
 start:
+    call SCREEN_CLEAR
     EI
 loop:
     OUT (#FE), A
     INC A
     JP loop
+
+include "engine/lib/screen/screen_clear.asm"
 
 CmdTable:
     DUP 256
