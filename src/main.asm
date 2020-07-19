@@ -19,7 +19,9 @@ loop:
     INC A
     JP loop
 
-include "engine/lib/screen/screen_clear.asm"
+include "engine/lib/keyboard/scancode.asm"
+include "engine/lib/screen/clear.asm"
+include "engine/lib/memory/set_bank.asm"
 
 CmdTable:
     DUP 256
