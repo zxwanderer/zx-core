@@ -4,7 +4,6 @@ start:
     call SCREEN_CLEAR
     SetIM2 interruptTab, INIT_VEC
     EI
-    LD a, 1
 loop:
     OUT (#FE), A
     LD A, R
