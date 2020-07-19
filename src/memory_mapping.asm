@@ -65,11 +65,11 @@ im2_end:
 ; script_end:
 
 DISPLAY '-----------------------------------'
-DISPLAY 'Code         ', prog_start, '-', prog_end, ', size: ', /D, prog_end-prog_start
-DISPLAY '[Free]       ', prog_end, '-', interruptTab_start, ', size: ', /D, interruptTab_start-prog_end
-DISPLAY 'interruptTab ', interruptTab_start, '-', interruptTab_end, ', size: ', /D, interruptTab_end-interruptTab_start
-DISPLAY '[Free]       ', interruptTab_end, '-', im2_start, ', size: ', /D, im2_start-interruptTab_end
-DISPLAY 'Im2          ', im2_start, '-', im2_end, ', size: ', /D, im2_end-im2_start, ' free: ', /D, #8000 - im2_end
+DISPLAY 'Code:         ', prog_start, '-', prog_end, ', size: ', /D, prog_end-prog_start
+DISPLAY '[Free]:       ', prog_end, '-', interruptTab_start, ', size: ', /D, interruptTab_start-prog_end
+DISPLAY 'interruptTab: ', interruptTab_start, '-', interruptTab_end, ', size: ', /D, interruptTab_end-interruptTab_start
+DISPLAY '[Free]:       ', interruptTab_end, '-', im2_start, ', size: ', /D, im2_start-interruptTab_end
+DISPLAY 'Im2:          ', im2_start, '-', im2_end, ', size: ', /D, im2_end-im2_start, ' free: ', /D, #8000 - im2_end
 DISPLAY '-----------------------------------'
 
 ;   DISPLAY 'Music:  ', /D, music_end-music_start, ' free: ', /D, 0x10000 - music_end
