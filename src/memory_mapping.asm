@@ -25,12 +25,12 @@ im2_end:
     assert $ < #8000
 
 // ------  music.bin
-    ; SLOT 3
-    ; PAGE 7
-    ; ORG #C000
-; music_start:
-    ; include "./pages/_music.asm"
-; music_end:
+    SLOT 3
+    PAGE 7
+    ORG #C000
+music_start:
+    include "_music.asm"
+music_end:
 
 // ------  graph.bin
     ; SLOT 3
@@ -73,9 +73,9 @@ DISPLAY 'Im2:          ', im2_start, '-', im2_end-1, ', size: ', /D, im2_end-im2
 DISPLAY '[Free]:       ', im2_end, '-0x7FFF, size: ', /D, #8000 - im2_end
 DISPLAY '-----------------------------------'
 
-;   DISPLAY 'Music:  ', /D, music_end-music_start, ' free: ', /D, 0x10000 - music_end
+  DISPLAY 'Music:  ', /D, music_end-music_start, ' free: ', /D, 0x10000 - music_end
 ;   DISPLAY 'Script: ', /D, script_end-script_start, ' free: ', /D, 0x10000 - script_end
 ;   DISPLAY 'Text:   ', /D, text_end-text_start, ' free: ', /D, 0x10000 - text_end
 ;   DISPLAY 'Map:    ', /D, map_end-map_start, ' free: ', /D, 0x10000 - map_end
 ;   DISPLAY 'Graph:  ', /D, graph_end-graph_start, ' free: ', /D, 0x10000 - graph_end
-;   DISPLAY '-----------------------------------'
+  DISPLAY '-----------------------------------'
