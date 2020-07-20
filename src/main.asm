@@ -1,3 +1,4 @@
+include "pages_h.asm"
 include "memory_mapping.asm"
 
 ; CmdTable:
