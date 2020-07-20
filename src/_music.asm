@@ -1,7 +1,4 @@
-MUSIC_INIT:
-    ld hl, music2
-    jp Player.INIT
-
+MUSIC_INIT: equ Player.INIT
 MUSIC_PLAY: equ Player.PLAY
 
     MODULE Player

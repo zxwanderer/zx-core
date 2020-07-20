@@ -26,7 +26,7 @@ im2_end:
 
 // ------  music.bin
     SLOT 3
-    PAGE 7
+    PAGE 6
     ORG #C000
 music_start:
     include "_music.asm"
