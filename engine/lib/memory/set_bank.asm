@@ -39,10 +39,4 @@ cur_scr:
 	out (c),a
 	ret
 
-MEMORY_FLIP_SCREEN:
-	ld a, (cur_scr+1)
-	xor %00001000
-	ld (cur_scr+1), a
-	ret
-
 MEMORY_CUR_BANK:    db 0

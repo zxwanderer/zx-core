@@ -12,10 +12,12 @@ start:
 
     EI
 loop:
+    call SCREEN_FLIP
     LD A, R
     AND %00000111
     OUT (#FE), A
     JP loop
 
 include "engine/lib/screen/clear.asm"
+include "engine/lib/screen/flip.asm"
 include "engine/lib/memory/set_bank.asm"
