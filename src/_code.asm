@@ -38,6 +38,11 @@ loop:
 include "engine/lib/screen/set_colors.asm"
 include "engine/lib/screen/calc_down_pos.asm"
 include "engine/lib/screen/clear.asm"
+include "engine/lib/screen/addr_to_attr.asm"
 ; include "engine/lib/screen/flip.asm"
 
+include "engine/lib/sprites/sprites_16_h.asm"
+include "engine/lib/sprites/show_tile_16.asm"
+include "engine/lib/sprites/index_to_ptr_16.asm"
+include "engine/lib/sprites/show_map_16.asm"
 include "engine/lib/memory/set_bank.asm"
