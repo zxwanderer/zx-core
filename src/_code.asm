@@ -17,6 +17,13 @@ start:
 
     SetIM2 interruptTab, INIT_VEC
 
+    MemSetBank mapBank
+    LD HL, MAP_SET
+    CALL View.copy
+
+    MemSetBank graphBank
+    CALL View.draw
+
     EI
 loop:
     LD A, 1
@@ -41,8 +48,10 @@ include "engine/lib/screen/clear.asm"
 include "engine/lib/screen/addr_to_attr.asm"
 ; include "engine/lib/screen/flip.asm"
 
-include "engine/lib/sprites/sprites_16_h.asm"
-include "engine/lib/sprites/show_tile_16.asm"
-include "engine/lib/sprites/index_to_ptr_16.asm"
-include "engine/lib/sprites/show_map_16.asm"
+include "engine/lib/tiles16/show.asm"
+include "engine/lib/tiles16/index_to_ptr.asm"
+
+include "src/middleware/view_h.asm"
+include "src/middleware/view.asm"
+
 include "engine/lib/memory/set_bank.asm"
