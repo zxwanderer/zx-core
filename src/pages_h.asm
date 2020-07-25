@@ -1,5 +1,5 @@
 ; mempages
-; gfxBank equ #10    //0 - графика
+graphBank  equ #10    //0 - графика
 scriptBank equ #11   //1 - скрипты
                      //2 - #8000
 textBank   equ #13   //3 - страница текстовых сообщений

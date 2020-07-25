@@ -11,7 +11,8 @@ start:
     call Text68.print_at
 
     MemSetBank muzBank
-    ld hl, music2
+    ld hl, music1
+    
     CALL Player.INIT
 
     SetIM2 interruptTab, INIT_VEC

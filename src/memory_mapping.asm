@@ -33,20 +33,20 @@ music_start:
 music_end:
 
 // ------  graph.bin
-    ; SLOT 3
-    ; PAGE 0
-    ; ORG #C000
-; graph_start:
-    ; include "./pages/_graph.asm"
-; graph_end:
+    SLOT 3
+    PAGE 0
+    ORG #C000
+graph_start:
+    include "_graph.asm"
+graph_end:
 
 // ------  map.bin
-    ; SLOT 3
-    ; PAGE 4
-    ; ORG #C000
-; map_start:
-    ; include "./pages/_map.asm"
-; map_end:
+    SLOT 3
+    PAGE 4
+    ORG #C000
+map_start:
+    include "_map.asm"
+map_end:
 
 // ------  text.bin
     SLOT 3
@@ -76,6 +76,6 @@ DISPLAY '-----------------------------------'
   DISPLAY 'Music:  ', /D, music_end-music_start, ' free: ', /D, 0x10000 - music_end
 ;   DISPLAY 'Script: ', /D, script_end-script_start, ' free: ', /D, 0x10000 - script_end
   DISPLAY 'Text:   ', /D, text_end-text_start, ' free: ', /D, 0x10000 - text_end
-;   DISPLAY 'Map:    ', /D, map_end-map_start, ' free: ', /D, 0x10000 - map_end
-;   DISPLAY 'Graph:  ', /D, graph_end-graph_start, ' free: ', /D, 0x10000 - graph_end
+  DISPLAY 'Map:    ', /D, map_end-map_start, ' free: ', /D, 0x10000 - map_end
+  DISPLAY 'Graph:  ', /D, graph_end-graph_start, ' free: ', /D, 0x10000 - graph_end
   DISPLAY '-----------------------------------'
