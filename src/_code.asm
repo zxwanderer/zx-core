@@ -18,8 +18,8 @@ start:
     SetIM2 interruptTab, INIT_VEC
 
     MemSetBank mapBank
-    LD HL, MAP_SET
-    CALL View.copy
+    LD DE, #1212
+    CALL View.lookAt
 
     MemSetBank graphBank
     CALL View.draw
