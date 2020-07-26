@@ -144,10 +144,9 @@ no_mul
   LD E,D
   LD D,0
   ADD HL,DE; в HL у нас
-;mapArray_ptr:
   LD DE, MAP_SET
   ADD HL, DE
-  RET; нельзя отказаться от RET здесь!! - эта процедура используется еще для добавления спрайтов на карту!!!
+  RET
 
 ; вход:
 ; D - x, E - y,
