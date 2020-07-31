@@ -30,7 +30,7 @@ start:
     EI
 loop:
     LD A, (Input.pressButtons)
-    ; AND %00000111
+    AND %00000111
     OUT (#FE), A
     LD HL, keytable
     CALL Input.scanKeys
