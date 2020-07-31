@@ -1,4 +1,4 @@
-; input keys (?)
+d ; input joy keys
 BUTTON_NO      equ %00000
 BUTTON_UP      equ %00001
 BUTTON_DOWN    equ %00010
