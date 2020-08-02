@@ -1,3 +1,4 @@
+include "engine/lib/defines_h.asm"
 include "engine/lib/im2/im2_h.asm"
 include "engine/lib/keyboard/scancode_h.asm"
 include "engine/lib/keyboard/input_h.asm"
@@ -30,14 +31,14 @@ start:
 
     EI
 loop:
-    LD A, (Input.pressButtons)
-    AND %00000111
-    OUT (#FE), A
-    LD HL, keytable
-    CALL Input.scanKeys
-    LD HL, procButtons
-    ; CALL Input.processButtons
-    JP loop
+  LD HL, keytable
+  CALL Input.scanKeys
+  LD HL, procButtonsUDLRF
+  LD A, (Input.pressButtons)
+  CALL KEYBOARD_PROCESS_BUTTONS
+  XOR A
+  OUT (#FE), A
+  JP loop
 
 keytable:
   DefineKey KEY_Q, BUTTON_UP
@@ -47,9 +48,41 @@ keytable:
   DefineKey KEY_M, BUTTON_FIRE
   DefineKey KEY_SPACE, BUTTON_FIRE
   DefineKey KEY_ENTER, BUTTON_FIRE
-  defb 0
+  defb _endByte
 
-procButtons:
+procButtonsUDLRF:
+  defw proc_BUTTON_UP
+  defw proc_BUTTON_DOWN
+  defw proc_BUTTON_LEFT
+  defw proc_BUTTON_RIGHT
+  defw proc_BUTTON_FIRE
+  defb _endByte
+
+
+proc_BUTTON_UP:
+  LD A, 1
+  OUT (#FE), A
+  RET
+
+proc_BUTTON_DOWN:
+  LD A, 2
+  OUT (#FE), A
+  RET
+
+proc_BUTTON_LEFT:
+  LD A, 3
+  OUT (#FE), A
+  RET
+
+proc_BUTTON_RIGHT:
+  LD A, 4
+  OUT (#FE), A
+  RET
+
+proc_BUTTON_FIRE:
+  LD A, 5
+  OUT (#FE), A
+  RET
 
 include "engine/lib/screen/set_colors.asm"
 include "engine/lib/screen/calc_down_pos.asm"
@@ -60,6 +93,7 @@ include "engine/lib/tiles16/show.asm"
 include "engine/lib/tiles16/index_to_ptr.asm"
 
 include "engine/lib/keyboard/input.asm"
+include "engine/lib/keyboard/process_buttons.asm"
 
 include "src/middleware/view.asm"
 
