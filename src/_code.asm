@@ -1,5 +1,6 @@
 include "engine/lib/im2/im2_h.asm"
 include "engine/lib/keyboard/scancode_h.asm"
+include "engine/lib/keyboard/input_h.asm"
 include "src/middleware/view_h.asm"
 
 start:
@@ -34,24 +35,21 @@ loop:
     OUT (#FE), A
     LD HL, keytable
     CALL Input.scanKeys
+    LD HL, procButtons
+    ; CALL Input.processButtons
     JP loop
 
 keytable:
-  KEY_Q
-  defb BUTTON_UP
-  KEY_A
-  defb BUTTON_DOWN
-  KEY_O
-  defb BUTTON_LEFT
-  KEY_P
-  defb BUTTON_RIGHT
-  KEY_M
-  defb BUTTON_FIRE
-  KEY_SPACE
-  defb BUTTON_FIRE
-  KEY_ENTER
-  defb BUTTON_FIRE
+  DefineKey KEY_Q, BUTTON_UP
+  DefineKey KEY_A, BUTTON_DOWN
+  DefineKey KEY_O, BUTTON_LEFT
+  DefineKey KEY_P, BUTTON_RIGHT
+  DefineKey KEY_M, BUTTON_FIRE
+  DefineKey KEY_SPACE, BUTTON_FIRE
+  DefineKey KEY_ENTER, BUTTON_FIRE
   defb 0
+
+procButtons:
 
 include "engine/lib/screen/set_colors.asm"
 include "engine/lib/screen/calc_down_pos.asm"
