@@ -31,7 +31,7 @@ start:
 
     EI
 loop:
-  LD HL, keytable
+  LD HL, keyMappingTable
   CALL Input.scanKeys
   LD HL, procButtonsUDLRF
   LD A, (Input.pressButtons)
@@ -40,7 +40,7 @@ loop:
   OUT (#FE), A
   JP loop
 
-keytable:
+keyMappingTable:
   DefineKey KEY_Q, BUTTON_UP
   DefineKey KEY_A, BUTTON_DOWN
   DefineKey KEY_O, BUTTON_LEFT
