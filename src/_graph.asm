@@ -1,2 +1,3 @@
 TILE_SET:
-  include "data/graph/tiles_many.asm"
+  incbin "out/tiles.bin"
+  ; include "data/graph/tiles_many.asm"
