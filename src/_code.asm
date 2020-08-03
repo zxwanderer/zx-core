@@ -22,15 +22,18 @@ start:
 
     SetIM2 interruptTab, INIT_VEC
 
-    MemSetBank mapBank
-    LD DE, #1212
-    CALL View.lookAt
-
-    MemSetBank graphBank
-    CALL View.draw
-
     EI
+
 loop:
+
+    MemSetBank mapBank
+PosXY:    
+  LD DE, #0000
+  CALL View.lookAt
+
+  MemSetBank graphBank
+  CALL View.draw
+
   LD HL, keyMappingTable
   CALL Input.scanKeys
   LD HL, procButtonsUDLRF
@@ -60,21 +63,33 @@ procButtonsUDLRF:
 
 
 proc_BUTTON_UP:
+  LD A, (PosXY+1)
+  INC A
+  LD (PosXY+1), A
   LD A, 1
   OUT (#FE), A
   RET
 
 proc_BUTTON_DOWN:
+  LD A, (PosXY+1)
+  DEC A
+  LD (PosXY+1), A
   LD A, 2
   OUT (#FE), A
   RET
 
 proc_BUTTON_LEFT:
+  LD A, (PosXY)
+  DEC A
+  LD (PosXY), A
   LD A, 3
   OUT (#FE), A
   RET
 
 proc_BUTTON_RIGHT:
+  LD A, (PosXY+1)
+  INC A
+  LD (PosXY+1), A
   LD A, 4
   OUT (#FE), A
   RET
