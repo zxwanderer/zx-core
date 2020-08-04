@@ -26,12 +26,16 @@ start:
     EI
 
 loop:
-  call Input.waitNoKey
+  ; call Input.waitKey
+  ; call Input.waitNoKey
   MemSetBank mapBank
 
-PosXY:    
+PosXY: equ $+1
+
   LD DE, #0000
-  CALL View.lookAt
+  CALL View.calc_pos
+  CALL View.copy
+  ; CALL View.lookAt
 
   MemSetBank graphBank
   CALL View.draw
@@ -66,25 +70,25 @@ procButtonsUDLRF:
 
 
 proc_BUTTON_UP:
-  ; LD A, (PosXY+1)
-  ; INC A
-  ; LD (PosXY+1), A
+  LD A, (PosXY+1)
+  INC A
+  LD (PosXY+1), A
   LD A, 1
   OUT (#FE), A
   RET
 
 proc_BUTTON_DOWN:
-  ; LD A, (PosXY+1)
-  ; DEC A
-  ; LD (PosXY+1), A
+  LD A, (PosXY+1)
+  DEC A
+  LD (PosXY+1), A
   LD A, 2
   OUT (#FE), A
   RET
 
 proc_BUTTON_LEFT:
-  ; LD A, (PosXY)
-  ; DEC A
-  ; LD (PosXY), A
+  LD A, (PosXY)
+  DEC A
+  LD (PosXY), A
   LD A, 3
   OUT (#FE), A
   RET
