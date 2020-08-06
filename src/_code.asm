@@ -33,9 +33,7 @@ loop:
 PosXY: equ $+1
 
   LD DE, #0000
-  CALL View.calc_pos
-  CALL View.copy
-  ; CALL View.lookAt
+  CALL View.lookAt
 
   MemSetBank graphBank
   CALL View.draw
