@@ -3,7 +3,7 @@ include "engine/lib/im2/im2_h.asm"
 include "engine/lib/keyboard/scancode_h.asm"
 include "engine/lib/keyboard/input_h.asm"
 include "src/middleware/view_h.asm"
-include "src/middleware/move_checker_h.asm"
+include "src/middleware/directions_h.asm"
 
 start:
     DI
@@ -47,7 +47,7 @@ PosXY: equ $+1
   CALL KEYBOARD_PROCESS_BUTTONS
   XOR A
   OUT (#FE), A
-  HALT
+  ; HALT
   JP loop
 
 keyMappingTable:
@@ -70,40 +70,34 @@ procButtonsUDLRF:
 
 
 proc_BUTTON_UP:
-  LD A, (PosXY+1)
-  INC A
-  LD (PosXY+1), A
-  LD A, 1
-  OUT (#FE), A
+  LD A, dir_up
+  LD DE, (PosXY)
+  CALL MOVE_CALC_POS
+  LD (PosXY), DE
   RET
 
 proc_BUTTON_DOWN:
-  LD A, (PosXY+1)
-  DEC A
-  LD (PosXY+1), A
-  LD A, 2
-  OUT (#FE), A
+  LD A, dir_down
+  LD DE, (PosXY)
+  CALL MOVE_CALC_POS
+  LD (PosXY), DE
   RET
 
 proc_BUTTON_LEFT:
-  LD A, (PosXY)
-  DEC A
-  LD (PosXY), A
-  LD A, 3
-  OUT (#FE), A
+  LD A, dir_left
+  LD DE, (PosXY)
+  CALL MOVE_CALC_POS
+  LD (PosXY), DE
   RET
 
 proc_BUTTON_RIGHT:
-  LD A, (PosXY)
-  INC A
-  LD (PosXY), A
-  LD A, 4
-  OUT (#FE), A
+  LD A, dir_right
+  LD DE, (PosXY)
+  CALL MOVE_CALC_POS
+  LD (PosXY), DE
   RET
 
 proc_BUTTON_FIRE:
-  LD A, 5
-  OUT (#FE), A
   RET
 
 include "engine/lib/screen/set_colors.asm"
@@ -118,6 +112,6 @@ include "engine/lib/keyboard/input.asm"
 include "engine/lib/keyboard/process_buttons.asm"
 
 include "src/middleware/view.asm"
-include "src/middleware/move_checker.asm"
+include "src/middleware/move_calc_pos.asm"
 
 include "engine/lib/memory/set_bank.asm"
