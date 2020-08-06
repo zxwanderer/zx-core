@@ -1,13 +1,11 @@
-MODULE MoveChecker
-
- MACRO m_check_left:
+ MACRO m_check_left
     LD A,D
     DEC A
     JP M, check_act_no
     LD D,A
   ENDM
 
-  MACRO m_check_right:
+  MACRO m_check_right
     LD A,D
     INC A
     CP mapSize
@@ -15,14 +13,14 @@ MODULE MoveChecker
     LD D,A
   ENDM
 
-  MACRO m_check_up:
+  MACRO m_check_up
     LD A,E
     DEC A
     JP M, check_act_no
     LD E,A
   ENDM
 
-  MACRO m_check_down:
+  MACRO m_check_down
     LD A,E
     INC A
     CP mapSize
@@ -35,7 +33,7 @@ MODULE MoveChecker
 ;  A - dir
 ; Output: 
 ;  DE - new pos
-check:
+MOVE_CALC_POS:
   CP dir_up
   JR Z, check_up
   CP dir_down
@@ -98,5 +96,3 @@ check_right:
 check_center:
 check_act_yes:
     retTrue
-
-ENDMODULE
