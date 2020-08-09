@@ -26,8 +26,15 @@ start:
     EI
 
 loop:
-  ; call Input.waitKey
-  ; call Input.waitNoKey
+
+IsNeedUpdate: equ $+1
+  LD A, #01
+  OR A
+  JP Z, NoScreenUpdate
+  XOR A
+  LD (IsNeedUpdate), A
+
+  HALT
   MemSetBank mapBank
 
 PosXY: equ $+1
@@ -38,6 +45,7 @@ PosXY: equ $+1
   MemSetBank graphBank
   CALL View.draw
 
+NoScreenUpdate:
   LD HL, keyMappingTable
   CALL Input.scanKeys
   LD HL, procButtonsUDLRF
@@ -45,7 +53,6 @@ PosXY: equ $+1
   CALL KEYBOARD_PROCESS_BUTTONS
   XOR A
   OUT (#FE), A
-  ; HALT
   JP loop
 
 keyMappingTable:
@@ -69,6 +76,7 @@ procButtonsUDLRF:
 
 proc_BUTTON_UP:
   LD A, dir_up
+  LD (IsNeedUpdate), A
   LD DE, (PosXY)
   CALL MOVE_CALC_POS
   LD (PosXY), DE
@@ -76,6 +84,7 @@ proc_BUTTON_UP:
 
 proc_BUTTON_DOWN:
   LD A, dir_down
+  LD (IsNeedUpdate), A
   LD DE, (PosXY)
   CALL MOVE_CALC_POS
   LD (PosXY), DE
@@ -83,6 +92,7 @@ proc_BUTTON_DOWN:
 
 proc_BUTTON_LEFT:
   LD A, dir_left
+  LD (IsNeedUpdate), A
   LD DE, (PosXY)
   CALL MOVE_CALC_POS
   LD (PosXY), DE
@@ -90,6 +100,7 @@ proc_BUTTON_LEFT:
 
 proc_BUTTON_RIGHT:
   LD A, dir_right
+  LD (IsNeedUpdate), A
   LD DE, (PosXY)
   CALL MOVE_CALC_POS
   LD (PosXY), DE
