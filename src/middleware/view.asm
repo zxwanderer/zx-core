@@ -132,14 +132,14 @@ calc_pos:
   LD C,D; запоминаем posX в C
   LD A,E
   CP 00
-  JR Z, no_mul; если ноль по Y то не будем прибавлять ничего
+  JR Z, .no_mul; если ноль по Y то не будем прибавлять ничего
   LD B,E; кидаем posY в B - по B будет автодекрементный цикл
   LD D,0
   LD E, mapSize
-mul_loop
+.mul_loop
   ADD HL,DE
-  DJNZ mul_loop
-no_mul
+  DJNZ .mul_loop
+.no_mul
   POP DE
   LD E,D
   LD D,0

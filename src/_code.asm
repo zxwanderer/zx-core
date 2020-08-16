@@ -5,6 +5,9 @@ include "engine/lib/keyboard/input_h.asm"
 include "src/middleware/view_h.asm"
 include "src/middleware/directions_h.asm"
 
+include "engine/lib/logic/Point_h.asm"
+include "src/logic/Hero_h.asm"
+
 start:
     DI
 
@@ -18,9 +21,11 @@ start:
 
     MemSetBank muzBank
     ld hl, music1
+    call Player.INIT
     
-    CALL Player.INIT
-
+    MemSetBank mapBank
+    call Hero.initHeroes
+    
     SetIM2 interruptTab, INIT_VEC
 
     EI
@@ -108,6 +113,11 @@ proc_BUTTON_RIGHT:
 
 proc_BUTTON_FIRE:
   RET
+
+include "src/logic/logic_vars.asm"
+include "src/logic/heroes.asm"
+
+include "src/logic/Hero.asm"
 
 include "engine/lib/screen/set_colors.asm"
 include "engine/lib/screen/calc_down_pos.asm"
