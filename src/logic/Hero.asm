@@ -1,7 +1,10 @@
 MODULE Hero
 
+; 
+; Инициализация персонажей на карте, переход на первого персонажа
+; 
 initHeroes:
-.init_loop: ; пробегаемся по всем персонажам и размещаем их на карте
+.init_loop: 
   LD B, HeroesNum
   LD HL, HEROES_SET
   LD DE, Hero
@@ -25,6 +28,9 @@ initHeroes:
   ADD HL, DE
   DJNZ .init_loop
 
+;
+; Переход на первого персонажа
+;
 firstChar:
   LD HL, HEROES_SET
   ld (LOGIC_activeHero_ptr), HL
@@ -32,11 +38,19 @@ firstChar:
   LD (LOGIC_curHeroNum), A
   RET
 
+;
+; Циклический переход на следующего персонажа,
+; если дошли до последнего то переходим на первого
+;
 loopNextChar:
   CALL nextChar
   RET NZ
   JP firstChar
 
+; 
+; Переход на следующего персонажа
+; Выход:
+;    если установлен флаг Z, значит мы на последнем персонаже и дальше перейти нельзя
 nextChar:
   LD A, (LOGIC_curHeroNum)
   INC A

@@ -115,7 +115,7 @@ proc_BUTTON_FIRE:
   RET
 
 include "src/logic/logic_vars.asm"
-include "src/logic/heroes.asm"
+include "src/logic/heroes_data.asm"
 
 include "src/logic/Hero.asm"
 
