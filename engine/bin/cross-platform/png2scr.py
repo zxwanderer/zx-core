@@ -24,17 +24,19 @@ THE SOFTWARE.
 """
 __version__ = "1.0.4"
 
+BASE_HALF_TONE = 192
+
 from argparse import ArgumentParser
 from PIL import Image
 
 COLORS = ((0, 0, 0),
-          (0, 0, 205), (0, 0, 255),
-          (205, 0, 0), (255, 0, 0),
-          (205, 0, 205), (255, 0, 255),
-          (0, 205, 0), (0, 255, 0),
-          (0, 205, 205), (0, 255, 255),
-          (205, 205, 0), (255, 255, 0),
-          (205, 205, 205), (255, 255, 255),
+          (0, 0, BASE_HALF_TONE), (0, 0, 255),
+          (BASE_HALF_TONE, 0, 0), (255, 0, 0),
+          (BASE_HALF_TONE, 0, BASE_HALF_TONE), (255, 0, 255),
+          (0, BASE_HALF_TONE, 0), (0, 255, 0),
+          (0, BASE_HALF_TONE, BASE_HALF_TONE), (0, 255, 255),
+          (BASE_HALF_TONE, BASE_HALF_TONE, 0), (255, 255, 0),
+          (BASE_HALF_TONE, BASE_HALF_TONE, BASE_HALF_TONE), (255, 255, 255),
           )
 
 ATTR_I = (0x00, 0x01, 0x01 | 0x40, 0x02, 0x02 | 0x40,
@@ -57,14 +59,15 @@ def main():
                             epilog="Copyright (C) 2014-2016 Juan J Martinez <jjm@usebox.net>",
                             )
 
-    parser.add_argument("--version", action="version",
+    parser.add_argument('--version', action="version",
                         version="%(prog)s " + __version__)
-    parser.add_argument("image", help="image to convert")
+    parser.add_argument('-i', '--input', help="image to convert", type=str)
+    parser.add_argument('-o', '--output', default='image.scr', type=str)
 
     args = parser.parse_args()
 
     try:
-        image = Image.open(args.image)
+        image = Image.open(args.input)
     except IOError:
         parser.error("failed to open the image")
 
@@ -133,13 +136,12 @@ def main():
                                              + line * 8
                                              + col])
 
-    output = args.image + ".scr"
 
-    with open(output, "wb") as fh:
+    with open(args.output, "wb") as fh:
         fh.write(bytearray(interlaced))
         fh.write(bytearray(attrib))
 
-    print("%r created" % output)
+    print("%r created" % args.output)
 
 
 if __name__ == "__main__":
