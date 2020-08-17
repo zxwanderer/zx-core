@@ -21,7 +21,7 @@ start:
 
     MemSetBank muzBank
     ld hl, music1
-    call Player.INIT
+    ; call Player.INIT
     
     MemSetBank mapBank
     call Hero.initHeroes
