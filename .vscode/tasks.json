@@ -6,7 +6,7 @@
         {
             "type": "shell",
             "label": "make_scr",
-            "command": "python3 ${workspaceFolder}/engine/bin/cross-platform/png2scr.py -i ${workspaceFolder}/data/tiles/tiles.png -o ${workspaceFolder}/out/tiles.scr",
+            "command": "python3 ${workspaceFolder}/engine/bin/cross-platform/png2scr.py -i ${workspaceFolder}/data/tiles/tiles_many.png -o ${workspaceFolder}/out/tiles.scr",
             "problemMatcher": [],
         },
         {
@@ -57,6 +57,7 @@
             "linux": {
                 "command": "flatpak run net.sf.fuse_emulator/x86_64/stable ${workspaceFolder}/out/program.sna"
             },
+            "dependsOrder": "sequence",
             "dependsOn": [
                 "make_scr",
                 "make_tileset",
