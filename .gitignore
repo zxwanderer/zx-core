@@ -1,3 +1,2 @@
 .DS_Store
-out/program.list
-out/program.sna
+out/*
