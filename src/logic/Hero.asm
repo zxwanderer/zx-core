@@ -1,15 +1,5 @@
 MODULE Hero
 
-  MACRO CharRotMove dir_p
-    defw Entities.char_rot_move_me
-    defb dir_p
-  ENDM
-
-  MACRO CharDoDir action_p
-    defw Entities.char_do_dir_me
-    defb action_p
-  ENDM
-
 ; --------------------------------------------------------------------------------------
 ; Инициализация персонажей на карте, переход на первого персонажа
 ; --------------------------------------------------------------------------------------
@@ -30,9 +20,8 @@ initHeroes:
   CALL Cells.calc_pos
   LD A,(HL)
   LD (IX+Hero.ground),A; ячейку карты ставим на пол персонажа
-  CALL update_by_rot
-  ; LD A,(IX+Hero.sprite)
-  ; LD (HL),A ; ставим спрайт персонажа на карту
+  CALL update_sprite
+
   POP HL
   POP DE
   POP BC
@@ -86,8 +75,7 @@ move:
   LD IX, (LOGIC_activeHero_ptr)
   LD A, (IX+Hero.dir)
   CP B
-  JR NZ, .char_rot
-  RET
+  JR Z, stand
 
 .char_rot
   LD (IX+Hero.dir), B
@@ -96,7 +84,7 @@ move:
 ; Вход:
 ;  IX - указатель на героя
 ; --------------------------------------------------------------------------------------
-update_by_rot:
+update_sprite:
   LD B,(IX+Hero.base_spr)
   LD A,(IX+Hero.dir)
   ADD A, B
@@ -108,10 +96,17 @@ update_by_rot:
   CALL Cells.set
   RET
 
+stand:
+  LD A, do_stand
+; --------------------------------------------------------------------------------------
 ; Действие персонажа по направлению взгляда
 ; Вход:
 ;   A - действие
+; --------------------------------------------------------------------------------------
 do:
+  LD (.action), A
+.action equ $+1
+  LD A, #00
   RET
 
   ENDMODULE
