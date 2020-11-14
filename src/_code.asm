@@ -22,10 +22,10 @@ start:
     MemSetBank muzBank
     ld hl, music1
     call Player.INIT
-    
+
     MemSetBank mapBank
     call Hero.initHeroes
-    
+
     SetIM2 interruptTab, INIT_VEC
 
     EI
@@ -77,7 +77,6 @@ procButtonsUDLRF:
   defw proc_BUTTON_RIGHT
   defw proc_BUTTON_FIRE
   defb _endByte
-
 
 proc_BUTTON_UP:
   LD A, dir_up
