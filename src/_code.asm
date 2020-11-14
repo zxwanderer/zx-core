@@ -4,6 +4,7 @@ include "engine/lib/keyboard/scancode_h.asm"
 include "engine/lib/keyboard/input_h.asm"
 include "src/middleware/view_h.asm"
 include "src/middleware/directions_h.asm"
+include "src/middleware/actions_h.asm"
 
 include "engine/lib/logic/Point_h.asm"
 include "src/logic/Hero_h.asm"
@@ -84,7 +85,7 @@ proc_BUTTON_UP:
   CALL Hero.move
   ; LD (IsNeedUpdate), B
   ; LD DE, (PosXY)
-  ; CALL MOVE_CALC_POS
+  ; CALL MOVE_CALC_XY
   ; LD (PosXY), DE
   RET
 
@@ -93,7 +94,7 @@ proc_BUTTON_DOWN:
   CALL Hero.move
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
-  ; CALL MOVE_CALC_POS
+  ; CALL MOVE_CALC_XY
   ; LD (PosXY), DE
   RET
 
@@ -102,7 +103,7 @@ proc_BUTTON_LEFT:
   CALL Hero.move
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
-  ; CALL MOVE_CALC_POS
+  ; CALL MOVE_CALC_XY
   ; LD (PosXY), DE
   RET
 
@@ -111,7 +112,7 @@ proc_BUTTON_RIGHT:
   CALL Hero.move
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
-  ; CALL MOVE_CALC_POS
+  ; CALL MOVE_CALC_XY
   ; LD (PosXY), DE
   RET
 
@@ -136,7 +137,7 @@ include "engine/lib/keyboard/input.asm"
 include "engine/lib/keyboard/process_buttons.asm"
 
 include "src/middleware/view.asm"
-include "src/middleware/move_calc_pos.asm"
+include "src/middleware/move_calc_xy.asm"
 include "src/middleware/cells.asm"
 
 include "engine/lib/memory/set_bank.asm"

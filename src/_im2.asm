@@ -5,3 +5,4 @@ im2_routines:
     CALL MUSIC_PLAY
 
 include "engine/lib/im2/im2_end.asm"
+

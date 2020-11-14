@@ -33,7 +33,7 @@
 ;  A - dir
 ; Output: 
 ;  DE - new pos
-MOVE_CALC_POS:
+MOVE_CALC_XY:
   CP dir_up
   JR Z, check_up
   CP dir_down
