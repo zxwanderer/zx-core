@@ -9,35 +9,35 @@ include "engine/lib/logic/Point_h.asm"
 include "src/logic/Hero_h.asm"
 
 start:
-    DI
+  DI
 
-    LD A, %00000100
-    call SCREEN_SET_COLORS
+  LD A, %00000100
+  call SCREEN_SET_COLORS
 
-    MemSetBank textBank
-    LD DE, SCREEN_ADDR
-    LD HL, TEXT_HELLO
-    call Text68.print_at
+  MemSetBank textBank
+  LD DE, SCREEN_ADDR
+  LD HL, TEXT_HELLO
+  call Text68.print_at
 
-    MemSetBank muzBank
-    ld hl, music1
-    call Player.INIT
+  MemSetBank muzBank
+  ld hl, music1
+  call Player.INIT
 
-    MemSetBank mapBank
-    call Hero.initHeroes
+  MemSetBank mapBank
+  call Hero.initHeroes
 
-    SetIM2 interruptTab, INIT_VEC
+  SetIM2 interruptTab, INIT_VEC
 
-    EI
+  EI
 
 loop:
 
-IsNeedUpdate: equ $+1
-  LD A, #01
-  OR A
-  JP Z, NoScreenUpdate
-  XOR A
-  LD (IsNeedUpdate), A
+; IsNeedUpdate: equ $+1
+  ; LD A, #01
+  ; OR A
+  ; JP Z, NoScreenUpdate
+  ; XOR A
+  ; LD (IsNeedUpdate), A
 
   HALT
   MemSetBank mapBank
@@ -51,6 +51,7 @@ PosXY: equ $+1
   CALL View.draw
 
 NoScreenUpdate:
+  MemSetBank mapBank
   LD HL, keyMappingTable
   CALL Input.scanKeys
   LD HL, procButtonsUDLRF
@@ -79,38 +80,43 @@ procButtonsUDLRF:
   defb _endByte
 
 proc_BUTTON_UP:
-  LD A, dir_up
-  LD (IsNeedUpdate), A
-  LD DE, (PosXY)
-  CALL MOVE_CALC_POS
-  LD (PosXY), DE
+  LD B, dir_up
+  CALL Hero.move
+  ; LD (IsNeedUpdate), B
+  ; LD DE, (PosXY)
+  ; CALL MOVE_CALC_POS
+  ; LD (PosXY), DE
   RET
 
 proc_BUTTON_DOWN:
-  LD A, dir_down
-  LD (IsNeedUpdate), A
-  LD DE, (PosXY)
-  CALL MOVE_CALC_POS
-  LD (PosXY), DE
+  LD B, dir_down
+  CALL Hero.move
+  ; LD (IsNeedUpdate), A
+  ; LD DE, (PosXY)
+  ; CALL MOVE_CALC_POS
+  ; LD (PosXY), DE
   RET
 
 proc_BUTTON_LEFT:
-  LD A, dir_left
-  LD (IsNeedUpdate), A
-  LD DE, (PosXY)
-  CALL MOVE_CALC_POS
-  LD (PosXY), DE
+  LD B, dir_left
+  CALL Hero.move
+  ; LD (IsNeedUpdate), A
+  ; LD DE, (PosXY)
+  ; CALL MOVE_CALC_POS
+  ; LD (PosXY), DE
   RET
 
 proc_BUTTON_RIGHT:
-  LD A, dir_right
-  LD (IsNeedUpdate), A
-  LD DE, (PosXY)
-  CALL MOVE_CALC_POS
-  LD (PosXY), DE
+  LD B, dir_right
+  CALL Hero.move
+  ; LD (IsNeedUpdate), A
+  ; LD DE, (PosXY)
+  ; CALL MOVE_CALC_POS
+  ; LD (PosXY), DE
   RET
 
 proc_BUTTON_FIRE:
+  CALL Hero.do
   RET
 
 include "src/logic/logic_vars.asm"
@@ -131,5 +137,6 @@ include "engine/lib/keyboard/process_buttons.asm"
 
 include "src/middleware/view.asm"
 include "src/middleware/move_calc_pos.asm"
+include "src/middleware/cells.asm"
 
 include "engine/lib/memory/set_bank.asm"
