@@ -47,6 +47,14 @@ loopNextChar:
   RET NZ
   JP firstChar
 
+lookAtChar:
+  LD IX, (LOGIC_activeHero_ptr)
+  LD D,  (IX+Hero.pos.x)
+  LD E,  (IX+Hero.pos.y)
+  CALL View.lookAt
+  MemSetBank graphBank
+  JP View.draw
+
 ; --------------------------------------------------------------------------------------
 ; Переход на следующего персонажа
 ; Выход:
@@ -71,7 +79,6 @@ nextChar:
 ;   B - направление
 ; --------------------------------------------------------------------------------------
 move:
-  DEC B
   LD IX, (LOGIC_activeHero_ptr)
   LD A, (IX+Hero.dir)
   CP B
@@ -88,6 +95,7 @@ update_sprite:
   LD B,(IX+Hero.base_spr)
   LD A,(IX+Hero.dir)
   ADD A, B
+  DEC A; delta spr = dir - 1
   LD (IX+Hero.sprite), A
 .set_ground:
   LD D, (IX+Hero.pos.x)
@@ -101,12 +109,35 @@ stand:
 ; --------------------------------------------------------------------------------------
 ; Действие персонажа по направлению взгляда
 ; Вход:
+;   IX - указатель на героя
 ;   A - действие
 ; --------------------------------------------------------------------------------------
 do:
   LD (.action), A
+  LD D, (IX+Hero.pos.x)
+  LD E, (IX+Hero.pos.y)
+  LD A, (IX+Hero.dir)
+  CALL MOVE_CALC_XY ; в DE позиция действия
+  RET NC
+  LD (LOGIC_MapCell_xy), DE
+  CALL Cells.calc_pos
+  LD (LOGIC_MapCell_ptr), HL
 .action equ $+1
   LD A, #00
-  RET
+
+.do_stand
+  LD D, (IX+Hero.pos.x)
+  LD E, (IX+Hero.pos.y)
+  LD A, (IX+Hero.ground)
+  CALL Cells.set ; вернули на место землю
+
+  LD DE, (LOGIC_MapCell_xy)
+  LD (IX+Hero.pos.x), D
+  LD (IX+Hero.pos.y), E ; установили новые координаты 
+
+  LD HL, (LOGIC_MapCell_ptr)
+  LD A, (HL)
+  LD (IX+Hero.ground), A ; сохранили землю
+  JP update_sprite
 
   ENDMODULE
