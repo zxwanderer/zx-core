@@ -43,13 +43,11 @@ loop:
   HALT
   MemSetBank mapBank
 
-PosXY: equ $+1
+; PosXY: equ $+1
 
-  LD DE, #0000
-  CALL View.lookAt
-
-  MemSetBank graphBank
-  CALL View.draw
+  ; LD DE, #0000
+  ; CALL View.lookAt
+  CALL Hero.lookAtChar
 
 NoScreenUpdate:
   MemSetBank mapBank
