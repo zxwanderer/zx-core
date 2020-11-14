@@ -9,4 +9,3 @@ scrWindowMaxX equ mapSize-scrWidth+1  ; максимальная позиция 
 scrWindowMaxY equ mapSize-scrHeight+1 ; максимальная позиция окна отображения карты, иначе выходим за границу
 scrWidthHalf equ scrWidth/2;  8
 scrHeightHalf equ scrHeight/2; 6
-
