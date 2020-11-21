@@ -1,5 +1,11 @@
 
 SCREEN_CLEAR:
-	ld hl,SCREEN_ADDR, de,SCREEN_ADDR+1, bc,#1800, (hl),l : ldir
-	ld bc,#02ff, (hl),#47 : ldir
-    ret
+	LD HL,SCREEN_ADDR
+	LD DE,SCREEN_ADDR+1,
+	LD BC,#1800
+	LD (HL),L
+	LDIR
+	LD BC,#02ff
+	LD (HL),#47
+	LDIR
+  RET
