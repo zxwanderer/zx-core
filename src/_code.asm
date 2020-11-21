@@ -27,6 +27,9 @@ start:
   MemSetBank mapBank
   call Hero.initHeroes
 
+  MemSetBank eventBank
+  call EventsMap.init
+
   SetIM2 interruptTab, INIT_VEC
 
   EI
@@ -137,5 +140,6 @@ include "engine/lib/keyboard/process_buttons.asm"
 include "src/middleware/view.asm"
 include "src/middleware/move_calc_xy.asm"
 include "src/middleware/cells.asm"
+include "src/middleware/events_map.asm"
 
 include "engine/lib/memory/set_bank.asm"
