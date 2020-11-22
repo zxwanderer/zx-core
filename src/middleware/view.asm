@@ -39,7 +39,7 @@ copy_loop1:
   PUSH BC
 
   LD A, (HL)
-  AND A
+  AND %10000000
   JR Z, no_copy_cell
 
   MemSetBank mapBank
