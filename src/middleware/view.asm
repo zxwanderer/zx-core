@@ -27,6 +27,7 @@ MODULE View
 ; копируем тайлы из карты в массив отрисовки
 ; в HL указатель на индекс первого тайла карты
 copy:
+  MemSetBank eventBank
   LD IX, View.buffer
   LD B, scrHeight
 copy_loop2:
@@ -38,6 +39,17 @@ copy_loop1:
   PUSH BC
 
   LD A, (HL)
+  AND A
+  JR Z, no_copy_cell
+
+  MemSetBank mapBank
+  LD A, (HL)
+  LD (real_cell_value), A
+  MemSetBank eventBank
+
+real_cell_value: equ $+1
+  LD A, #00
+no_copy_cell:
   LD (IX), A
   INC IX
   INC HL

@@ -50,6 +50,7 @@ loop:
 
   ; LD DE, #0000
   ; CALL View.lookAt
+  CALL Hero.lookAround
   CALL Hero.lookAtChar
 
 NoScreenUpdate:
@@ -84,6 +85,7 @@ procButtonsUDLRF:
 proc_BUTTON_UP:
   LD B, dir_up
   CALL Hero.move
+  CALL Hero.lookAround
   ; LD (IsNeedUpdate), B
   ; LD DE, (PosXY)
   ; CALL MOVE_CALC_XY
@@ -93,6 +95,7 @@ proc_BUTTON_UP:
 proc_BUTTON_DOWN:
   LD B, dir_down
   CALL Hero.move
+  CALL Hero.lookAround  
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
   ; CALL MOVE_CALC_XY
@@ -102,6 +105,7 @@ proc_BUTTON_DOWN:
 proc_BUTTON_LEFT:
   LD B, dir_left
   CALL Hero.move
+  CALL Hero.lookAround  
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
   ; CALL MOVE_CALC_XY
@@ -111,6 +115,7 @@ proc_BUTTON_LEFT:
 proc_BUTTON_RIGHT:
   LD B, dir_right
   CALL Hero.move
+  CALL Hero.lookAround  
   ; LD (IsNeedUpdate), A
   ; LD DE, (PosXY)
   ; CALL MOVE_CALC_XY
