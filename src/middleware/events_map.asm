@@ -41,7 +41,7 @@ look_dir:
   CALL Cells.calc_pos
 .update_mask_hl:
     LD A, (HL)
-    OR %00000001
+    OR %10000000
     LD (HL), A
     RET
   RET
