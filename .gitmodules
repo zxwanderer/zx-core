@@ -1,6 +1,9 @@
-[submodule "soft/sources/packers/salvador"]
-	path = soft/sources/packers/salvador
-	url = https://github.com/emmanuel-marty/salvador
 [submodule "soft/sources/packers/upkr"]
 	path = soft/sources/packers/upkr
+	url = https://github.com/exoticorn/upkr
+[submodule "external_sources/packers/salvador"]
+	path = external_sources/packers/salvador
+	url = https://github.com/emmanuel-marty/salvador
+[submodule "external_sources/packers/upkr"]
+	path = external_sources/packers/upkr
 	url = https://github.com/exoticorn/upkr
