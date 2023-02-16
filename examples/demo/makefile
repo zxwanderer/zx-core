@@ -1,5 +1,5 @@
-BIN_FOLDER := ./soft/bin/osx
-SRC_FOLDER := ./src
+BIN_FOLDER := ../../bin/osx
+SRC_FOLDER := ./
 BUILD_FOLDER := ./output
 
 PROJECT_NAME := demo
