@@ -8,3 +8,8 @@ Some external resources:
 * scr2spr from qboneteam: https://github.com/qboneteam/scr2spr (with some modificaitons)
 
 * You must install Python3 for scripts
+
+Packers:
+
+* upkr: https://github.com/exoticorn/upkr
+* savlador: https://github.com/emmanuel-marty/salvador
