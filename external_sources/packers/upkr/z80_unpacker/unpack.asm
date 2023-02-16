@@ -25,7 +25,7 @@
 ; initialised to probs.e by BASIC `USR` command and you can remove it from unpack init (-3B)
 
     OPT push reset --syntax=abf
-    ; MODULE upkr
+    MODULE upkr
 
 NUMBER_BITS     EQU     16+15       ; context-bits per offset/length (16+15 for 16bit offsets/pointers)
     ; numbers (offsets/lengths) are encoded like: 1a1b1c1d1e0 = 0000'0000'001e'dbca
@@ -77,7 +77,7 @@ int upkr_unpack(void* destination, void* compressed_data) {
 }
 */
 ; IN: IX = compressed_data, DE' = destination
-; unpack:
+unpack:
   ; ** reset probs to 0x80, also reset HL (state) to zero, and set BC to probs+context 0
     ld      hl,probs.c>>1
     ld      bc,probs.e
@@ -146,13 +146,13 @@ int upkr_unpack(void* destination, void* compressed_data) {
         ; forward unpack (write_ptr++, upkr_data_ptr++)
         ld      h,d             ; DE = write_ptr
         ld      l,e
-.offset:  ld  bc,0
+.offset+*:  ld  bc,0
         sbc     hl,bc           ; CF=0 from decode_number ; HL = write_ptr - offset
         pop     bc              ; BC = length
         ldir
     ELSE
         ; backward unpack (write_ptr--, upkr_data_ptr--)
-.offset:  ld  hl,0
+.offset+*:  ld  hl,0
         add     hl,de           ; HL = write_ptr + offset
         pop     bc              ; BC = length
         lddr
@@ -331,5 +331,51 @@ probs:      EQU ($ + 255) & -$100                       ; probs array aligned to
 
     DISPLAY "upkr.unpack probs array placed at: ",/A,probs,",\tsize: ",/A,probs.c
 
-    ; ENDMODULE
+/*
+ archived: negligibly faster but +6B longer decode_number variant using HL' and BC' to
+ do `number|=(1<<bit_pos);` type of logic in single loop.
+*/
+; decode_number:
+;     exx
+;     ld      bc,1
+;     ld      l,b
+;     ld      h,b                 ; HL = 0
+; .loop
+;     exx
+;     inc     c
+;     call    decode_bit
+;     jr      nc,.done
+;     inc     c
+;     call    decode_bit
+;     exx
+;     jr      nc,.b0
+;     add     hl,bc
+; .b0:
+;     sla     c
+;     rl      b
+;     jr      .loop
+; .done:
+;     exx
+;     add     hl,bc
+;     push    hl
+;     exx
+;     pop     de
+;     ret
+
+/*
+ archived: possible LUT variant of updating probs value, requires 512-aligned 512B table (not tested)
+*/
+; code is replacing decode_bit from "; *** adjust probs[context_index]", followed by `ld (bc),a : add a,d ...`
+;     ld      c,a
+;     ld      a,high(probs_update_table)/2    ; must be 512 aligned
+;     rla
+;     ld      b,a
+;     ld      a,(bc)
+;     pop     bc
+; -------------------------------------------
+; probs_update_table: EQU probs-512
+; -------------------------------------------
+; table generator is not obvious and probably not short either, 20+ bytes almost for sure, maybe even 30-40
+
+    ENDMODULE
     OPT pop
