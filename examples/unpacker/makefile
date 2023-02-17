@@ -1,5 +1,6 @@
 BIN_FOLDER := ../../bin/osx
 LIBS_FOLDER := ../../libs
+EXT_LIBS_FOLDER := ../..
 
 SRC_FOLDER := .
 BUILD_FOLDER := ./output
@@ -17,6 +18,7 @@ pack_sal:
 build: clean pack_sal
 	$(BIN_FOLDER)/sjasmplus --dos866 --nofakes --dirbol --outprefix=$(BUILD_FOLDER)/ \
 				-i$(LIBS_FOLDER) \
+				-i$(EXT_LIBS_FOLDER) \
 				-DSNA_FILENAME=\"$(PROJECT_NAME).sna\" \
 				-DBIN_FILENAME=\"$(PROJECT_NAME).bin\" \
         --lst=$(BUILD_FOLDER)/program.list \

@@ -1,21 +1,19 @@
 	device zxspectrum48
 	org #6000
 start:
-	; di
 	; LD HL, picture
 	; LD DE, #4000
 	; LD BC, #2000
 	; ldir 
-	; halt
 
 	LD HL, picture_pack:
 	LD DE, #4000
-	CALL DecompressZX0v1
+	CALL Salvador.unpack
 loop:
 	jp loop
 
 unpacker:
-	include "unpackers/salvador/unzx0v1_fast.asm"
+	include "unpackers/salvador/unpack.asm"
 
 picture_pack:
 	incbin "./output/prof4d_np_2015_CC_Winter.sal"
