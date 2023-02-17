@@ -1,34 +1,48 @@
 	device zxspectrum128
 
+INIT_VEC: equ #7D7D
+
+	include "stack/push_pop_h.asm"
+	include "im2/im2_h.asm"
+	
 	org #6000
-start:	di : 
+start:	
+	di 
 
 	ld hl, music_data
-  	call MUSIC_INIT
-	ld a,#5c, i,a, hl,interr, (#5cff),hl : im 2 : ei
+  call MUSIC_INIT
+
+	; ld a,#5c, i,a, hl,interr, (#5cff),hl : im 2 : ei
+	SetIM2 interruptTab, INIT_VEC
+	ei
 
 loop:
 	halt
 	inc a
 	out (#fe), a
-	halt
 	jr loop
 
 	include "music.asm"
 	
-interr:
-	di
-	push af,bc,de,hl,ix,iy
-	exx : ex af, af'
-	push af,bc,de,hl,ix,iy
+// ------------- interrupt tabs
+    align 256
+interruptTab:	
+    ds 257,0
 
+// ------------- im2 routines
+	ASSERT $ < INIT_VEC
+	ORG INIT_VEC
+interr:	
+	di
+	DO_PUSH_ALL_REGISTRY
+	
 	call MUSIC_PLAY
 
-	pop iy,ix,hl,de,bc,af
-	exx : ex af, af'
-	pop iy,ix,hl,de,bc,af
+	DO_POP_ALL_REGISTRY
 	ei
 	ret
+
+	
 
 	display 'PAGE0 end: ', $
 	display /d, 'Total bytes used: ', $ - start
