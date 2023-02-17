@@ -13,7 +13,6 @@ start:
 	di
 
 	DEFINE  Upkr.buffer #F000
-
 	LD IX, picture_pack
 	LD DE, #4000
   EXX
