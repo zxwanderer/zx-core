@@ -8,6 +8,7 @@ start:	di :
 	ld a,#5c, i,a, hl,interr, (#5cff),hl : im 2 : ei
 
 loop:
+	halt
 	inc a
 	out (#fe), a
 	halt
@@ -15,7 +16,8 @@ loop:
 
 	include "music.asm"
 	
-interr	di
+interr:
+	di
 	push af,bc,de,hl,ix,iy
 	exx : ex af, af'
 	push af,bc,de,hl,ix,iy
