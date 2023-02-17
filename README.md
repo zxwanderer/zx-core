@@ -13,3 +13,6 @@ Packers:
 
 * upkr: https://github.com/exoticorn/upkr
 * savlador: https://github.com/emmanuel-marty/salvador
+
+
+Файлы с именем *_h.asm представляют собой макросы, и сами по себе ничего не добавляют к размеру скомпилированного кода.
