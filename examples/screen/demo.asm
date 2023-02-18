@@ -6,16 +6,20 @@ SCREEN_ADDR equ #4000
 start:
 
 loop:
-	CALL SCREEN_CLEAR
+	; CALL SCREEN_CLEAR
 
 	LD HL, #0000
 	LD DE, #4000
 	LD BC, #2000
 	ldir
 
+	LD A, 1
+	CALL SCREEN_SET_COLORS 
+
 	jp loop
 
 	include "screen/clear.asm"
+	include "screen/set_colors.asm"
 
 	display 'PAGE0 end: ', $
 	display /d, 'Total bytes used: ', $ - start
