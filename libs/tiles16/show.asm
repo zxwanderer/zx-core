@@ -1,7 +1,7 @@
 ;показываем 1 тайл на карте
 ;HL - указатель на спрайт
 ;DE - экранный адрес
-TILE_16_SHOW:
+TILE16_SHOW:
    PUSH DE
  ; // thanks to Alone Coder!
    LD BC,#0808
