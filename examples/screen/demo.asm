@@ -6,20 +6,36 @@ SCREEN_ADDR equ #4000
 start:
 
 loop:
-	; CALL SCREEN_CLEAR
+	CALL Screen.SCREEN_CLEAR
 
+	CALL Keypress.KEYBOARD_WAIT_KEY_PRESS
+	CALL Keypress.KEYBOARD_WAIT_UNPRESS
+	
 	LD HL, #0000
 	LD DE, #4000
 	LD BC, #2000
 	ldir
 
+	CALL Keypress.KEYBOARD_WAIT_KEY_PRESS
+	CALL Keypress.KEYBOARD_WAIT_UNPRESS
+
 	LD A, 1
-	CALL SCREEN_SET_COLORS 
+	CALL Screen.SCREEN_SET_COLORS 
+
+	CALL Keypress.KEYBOARD_WAIT_KEY_PRESS
+	CALL Keypress.KEYBOARD_WAIT_UNPRESS
 
 	jp loop
 
-	include "screen/clear.asm"
-	include "screen/set_colors.asm"
+	MODULE Screen
+		include "screen/clear.asm"
+		include "screen/set_colors.asm"
+	ENDMODULE
+
+	MODULE Keypress
+		include "keyboard/wait_key.asm"
+		include "keyboard/wait_unkey.asm"
+	ENDMODULE
 
 	display 'PAGE0 end: ', $
 	display /d, 'Total bytes used: ', $ - start
