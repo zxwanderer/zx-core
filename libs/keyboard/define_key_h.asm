@@ -1,4 +1,4 @@
-   MACRO DefineKey _key, _button
+   MACRO DefineKey _key, _proc
     _key
-    db _button
+    dw _proc
    ENDM
