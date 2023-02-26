@@ -6,7 +6,7 @@
 ; --------------------------------------------------------------------------------------
 CELLS_SET:
   LD (.cur_spr), A
-  CALL calc_pos
+  CALL CELLS_CALC_POS
 .cur_spr equ $+1
   LD (HL), #ff
   RET
