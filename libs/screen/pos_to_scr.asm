@@ -1,7 +1,7 @@
 
 ; вычисляем адрес по позиции знакоместа
 ; DE - D-x, E-y
-POS_TO_SCR:
+SCREEN_POS_TO_ADDR:
 	LD A,E
 	AND  7
 	RRCA
