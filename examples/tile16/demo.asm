@@ -1,7 +1,7 @@
 	device zxspectrum48
 
 TILE_SET equ #0000
-MAP_SET equ $0000
+MAP_DATA equ $0000
 MAP_MASK equ $0000
 
 SCREEN_ADDR equ #4000
@@ -16,7 +16,7 @@ TILE_SCR_HEIGTH equ 12
 start:
 
 loop:
-	LD HL, MAP_SET
+	LD HL, MAP_DATA
 	CALL COPY_TO_BUFFER
 	CALL TILE16_SHOW_SCREEN
   jp loop

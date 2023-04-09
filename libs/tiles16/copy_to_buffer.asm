@@ -1,9 +1,9 @@
 ; копируем тайлы из карты в массив отрисовки
 ; в HL указатель на индекс первого тайла карты
 COPY_TO_BUFFER:
-  LD DE, MAP_MASK-MAP_SET
+  LD DE, MAP_MASK-MAP_DATA
   ADD HL, DE
-  LD DE, MAP_SET-MAP_MASK
+  LD DE, MAP_DATA-MAP_MASK
 
   LD IX, VIEW_BUFFER
   LD B, TILE_SCR_HEIGTH

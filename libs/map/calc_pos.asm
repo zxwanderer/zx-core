@@ -23,6 +23,6 @@ MAP_CALC_PTR_BY_POS:
   LD E, D
   LD D, 0
   ADD HL, DE; в HL у нас
-  LD DE, MAP_SET
+  LD DE, MAP_DATA
   ADD HL, DE
   RET
