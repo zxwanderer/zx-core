@@ -35,7 +35,7 @@
 ; Output: 
 ;  DE - new pos
 ; -------------------------------------------------
-MOVE_CALC_POS_BY_DIR:
+MAP_CALC_POS_BY_DIR:
   CP dir_up
   JR Z, check_up
   CP dir_down
