@@ -3,9 +3,9 @@
 ; Вход: DE - pos,  D - x, E - y
 ; Выход: DE - pos,  D - x, E - y
 
-VIEW_CENTER:
+VIEW_CALC_LOOK_AT_CENTER:
 .centr_X:
-  LD A,D; проверяем X на минимальность
+  LD A, D; проверяем X на минимальность
   SUB VIEW_SCR_WIDTH_HALF; вычитаем из A половину ширины экрана
   JR NC, .centr_X_max
   LD D, #00; обнуляем X
