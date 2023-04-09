@@ -5,24 +5,24 @@
 ; Выход: 
 ;     HL - указатель
 ; --------------------------------------------------------------------------------------
-CELLS_CALC_POS:
+CELLS_CALC_PTR_BY_POS:
   LD HL, #0000
   PUSH DE
-  LD C,D; запоминаем posX в C
-  LD A,E
+  LD C, D; запоминаем posX в C
+  LD A, E
   CP 00
   JR Z, .no_mul; если ноль по Y то не будем прибавлять ничего
-  LD B,E; кидаем posY в B - по B будет автодекрементный цикл
-  LD D,0
+  LD B, E; кидаем posY в B - по B будет автодекрементный цикл
+  LD D, 0
   LD E, TILE_MAP_SIZE_WIDTH
 .mul_loop
   ADD HL,DE
   DJNZ .mul_loop
 .no_mul
   POP DE
-  LD E,D
-  LD D,0
-  ADD HL,DE; в HL у нас
+  LD E, D
+  LD D, 0
+  ADD HL, DE; в HL у нас
   LD DE, MAP_SET
   ADD HL, DE
   RET
