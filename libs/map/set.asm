@@ -6,7 +6,7 @@
 ; --------------------------------------------------------------------------------------
 MAP_SET:
   LD (.cur_spr), A
-  CALL CELLS_CALC_PTR_BY_POS
+  CALL MAP_CALC_PTR_BY_POS
 .cur_spr equ $+1
   LD (HL), #ff
   RET
