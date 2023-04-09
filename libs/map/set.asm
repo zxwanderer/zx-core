@@ -4,7 +4,7 @@
 ;   DE - pos,  D - x, E - y
 ;   A - номер спрайта
 ; --------------------------------------------------------------------------------------
-MAP_SET:
+MAP_SET_BY_POS:
   LD (.cur_spr), A
   CALL MAP_CALC_PTR_BY_POS
 .cur_spr equ $+1
