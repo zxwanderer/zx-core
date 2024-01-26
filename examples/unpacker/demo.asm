@@ -21,7 +21,7 @@ loop:
 	LD BC, #1600
 	LDIR
 
-	DI 
+	DI
 
 	DEFINE  Upkr.buffer #F000
 	LD IX, picture_pack_upkr
