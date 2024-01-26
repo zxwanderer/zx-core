@@ -15,12 +15,8 @@ loop:
 		
 	include "text/text68.asm"
 
-	include "screen/clear.asm"
 	include "screen/calc_down_pos.asm"
-	include "screen/set_colors.asm"
 
-	include "keyboard/wait_key.asm"
-	include "keyboard/wait_unkey.asm"
 
 message: db 'Hello world!', 0
 
