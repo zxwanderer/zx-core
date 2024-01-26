@@ -1,4 +1,4 @@
-run_unpack:
+run_unpacker:
 	$(MAKE) -C ./unpacker/ run
 
 run_triton:

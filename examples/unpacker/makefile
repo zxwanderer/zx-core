@@ -13,13 +13,13 @@ clean:
 
 pack_sal:
 	rm -f $(BUILD_FOLDER)/*.sal
-	$(BIN_FOLDER)/salvador -classic $(SRC_FOLDER)/prof4d_np_2015_CC_Winter.scr $(BUILD_FOLDER)/prof4d_np_2015_CC_Winter.sal
+	$(BIN_FOLDER)/salvador -classic $(SRC_FOLDER)/helpcomputer0_In_the_shade_2023.scr $(BUILD_FOLDER)/helpcomputer0_In_the_shade_2023.sal
 
 pack_upkr:
 	rm -f $(BUILD_FOLDER)/*upkr.
 	$(BIN_FOLDER)/upkr --z80 $(SRC_FOLDER)/prof4d_np_2015_CC_Winter.scr $(BUILD_FOLDER)/prof4d_np_2015_CC_Winter.upkr
 
-build: clean pack_upkr
+build: clean pack_sal pack_upkr
 	$(BIN_FOLDER)/sjasmplus --dos866 --nofakes --dirbol --outprefix=$(BUILD_FOLDER)/ \
 				-i$(LIBS_FOLDER) \
 				-i$(EXT_LIBS_FOLDER) \

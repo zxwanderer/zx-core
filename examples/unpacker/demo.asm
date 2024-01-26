@@ -1,33 +1,45 @@
 	device zxspectrum48
 	org #6000
 start:
-	; LD HL, picture
-	; LD DE, #4000
-	; LD BC, #2000
-	; ldir 
+loop:
 
-	; LD HL, picture_pack:
-	; LD DE, #4000
-	; CALL Salvador.unpack
+	LD HL, #0000
+	LD DE, #4000
+	LD BC, #1600
+	LDIR
 
-	di
+	DI
+
+	LD HL, picture_pack_sal
+	LD DE, #4000
+	CALL Salvador.unpack
+
+	EI
+	
+	LD HL, #0000
+	LD DE, #4000
+	LD BC, #1600
+	LDIR
+
+	DI 
 
 	DEFINE  Upkr.buffer #F000
-	LD IX, picture_pack
+	LD IX, picture_pack_upkr
 	LD DE, #4000
-  EXX
+	EXX
 	CALL Upkr.unpack
-	ei
-loop:
+
+	EI
 	jp loop
 
 unpacker:
 	include "unpackers/upkr/unpack.asm"
-	; include "unpackers/salvador/unpack.asm"
+	include "unpackers/salvador/unpack.asm"
 
-picture_pack:
+picture_pack_upkr:
 	incbin "./output/prof4d_np_2015_CC_Winter.upkr"
-	; incbin "./output/prof4d_np_2015_CC_Winter.sal"
+picture_pack_sal:
+	incbin "./output/helpcomputer0_In_the_shade_2023.sal"
 ; picture:
 	; incbin "prof4d_np_2015_CC_Winter.scr"
 	
