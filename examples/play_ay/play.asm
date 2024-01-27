@@ -10,15 +10,14 @@ start:
 	di 
 
 	ld hl, music_data
-  call MUSIC_INIT
+  	call MUSIC_INIT
 
 	; ld a,#5c, i,a, hl,interr, (#5cff),hl : im 2 : ei
 	SetIM2 interruptTab, INIT_VEC
 	ei
 
 loop:
-	halt
-	inc a
+	ld a, r
 	out (#fe), a
 	jr loop
 
@@ -36,13 +35,17 @@ interr:
 	di
 	DO_PUSH_ALL_REGISTRY
 	
+	ld a, 1
+	out (#fe), a
+	
 	call MUSIC_PLAY
+
+	ld a, 2
+	out (#fe), a
 
 	DO_POP_ALL_REGISTRY
 	ei
 	ret
-
-	
 
 	display 'PAGE0 end: ', $
 	display /d, 'Total bytes used: ', $ - start
