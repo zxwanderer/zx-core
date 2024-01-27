@@ -21,3 +21,6 @@ run_play_ay:
 
 run_demo:
 	$(MAKE) -C ./demo/ run
+
+run_long_press:
+	$(MAKE) -C ./long_press/ run
