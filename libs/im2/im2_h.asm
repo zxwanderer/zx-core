@@ -1,5 +1,6 @@
-  ; _intTab must be aligned 256 (#BC00)
-	; _vector must be high _vector = low _vector  (#BEBE)
+; _intTab must be aligned 256 (#BC00)
+; _vector must be high _vector = low _vector  (#BEBE)
+
 	MACRO SetIM2 _intTab, _vector
 	  ld hl,_intTab
 	  ld de,_intTab+1
