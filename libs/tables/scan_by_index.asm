@@ -1,4 +1,5 @@
 
+  include "../registers/hl_ptr_to_hl_h.asm"
   include "../result/set_result.asm"
 
 ; Найти запись по индексу в таблице вида [#index][#pointer]
