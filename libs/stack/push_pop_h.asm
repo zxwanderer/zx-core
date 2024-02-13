@@ -1,5 +1,5 @@
  	ifndef _PUSH_POP_H_
-    define _PUSH_POP_H_
+  define _PUSH_POP_H_
 
   MACRO DO_PUSH_ALL_REGISTRY
 	push af,bc,de,hl,ix,iy
