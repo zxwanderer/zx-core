@@ -17,7 +17,7 @@ TABLE_SCAN_BY_INDEX_PTR:
 .loop
   LD A, (HL)
   AND A  ;проверяем на 0
-	JP Z, check_act_no
+	JP Z, ret_false
 
 .index_set:
   CP #00
