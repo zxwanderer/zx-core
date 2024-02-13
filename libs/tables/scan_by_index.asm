@@ -1,3 +1,6 @@
+
+  include "../result/set_result.asm"
+
 ; Найти запись по индексу в таблице вида [#index][#pointer]
 ; Если индекс найден то в HL возвращается указатель #pointer
 
@@ -26,4 +29,4 @@ TABLE_SCAN_BY_INDEX_PTR:
 .found:
   INC HL ; передвигаем с действия на указатель
   HL_PTR_TO_HL
-  JP check_act_yes
+  retTrue
