@@ -1,5 +1,5 @@
  	ifndef _SET_RESULT_ASM_
-  define _SET_RESULT_ASN_
+  define _SET_RESULT_ASM_
 
   include "set_result_h.asm"
 
