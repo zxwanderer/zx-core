@@ -3,10 +3,10 @@
 
   include "set_result_h.asm"
 
-check_act_no:
+ret_false:
   retFalse
 
-check_act_yes:
-    retTrue
+ret_true:
+  retTrue
 
   endif
