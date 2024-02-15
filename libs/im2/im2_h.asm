@@ -20,7 +20,7 @@
 	MACRO IM2_INIT_JP table?, interrupt_routine? 
 INT_VECTOR_h equ high table?
 INT_VECTOR_h_1 equ INT_VECTOR_h + 1
-INT_VECTOR_END equ vector? + 257
+INT_VECTOR_END equ table? + 257
 
 INT_ROUTINE equ INT_VECTOR_h_1 * 256 + INT_VECTOR_h_1
 INT_ROUTINE_END equ INT_ROUTINE + 3
