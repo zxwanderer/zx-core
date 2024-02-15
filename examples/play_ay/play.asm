@@ -1,6 +1,7 @@
 	device zxspectrum128
 
-INIT_VEC: equ #7D7D
+INT_TABLE equ $BD00
+INIT_VEC equ #BEBE
 
 	include "stack/push_pop_h.asm"
 	include "im2/im2_h.asm"
@@ -10,10 +11,9 @@ start:
 	di 
 
 	ld hl, music_data
-  	call MUSIC_INIT
+  call MUSIC_INIT
 
-	; ld a,#5c, i,a, hl,interr, (#5cff),hl : im 2 : ei
-	SetIM2 interruptTab, INIT_VEC
+	IM2_INIT INT_TABLE, INIT_VEC
 	ei
 
 loop:
@@ -22,11 +22,9 @@ loop:
 	jr loop
 
 	include "music.asm"
-	
+
 // ------------- interrupt tabs
-    align 256
-interruptTab:	
-    ds 257,0
+	IM2_ORG_VECTOR_TABLE INT_TABLE
 
 // ------------- im2 routines
 	ASSERT $ < INIT_VEC

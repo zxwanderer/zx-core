@@ -15,6 +15,13 @@
 	  im 2
   	ENDM
 
+    MACRO IM2_ORG_VECTOR_TABLE _intTab
+ORG _intTab
+    align 256
+	ASSERT $ == _intTab
+    ds 257,0
+    ENDM
+
 	MACRO IM2_ROUTINES_ORG_START _vector
 ORG _vector
 		DI
