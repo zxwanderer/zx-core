@@ -17,17 +17,17 @@
 	; по любому адресу
 	; 
 	; Для использования должна быть определена переменная 
-	MACRO IM2_INIT_JP vector?, interrupt_routine? 
-INT_VECTOR_h equ high vector?
+	MACRO IM2_INIT_JP table?, interrupt_routine? 
+INT_VECTOR_h equ high table?
 INT_VECTOR_h_1 equ INT_VECTOR_h + 1
 INT_VECTOR_END equ vector? + 257
 
 INT_ROUTINE equ INT_VECTOR_h_1 * 256 + INT_VECTOR_h_1
 INT_ROUTINE_END equ INT_ROUTINE + 3
 
-  LD HL, vector?
+  LD HL, table?          ; #BC00
   LD B,0
-  LD A, INT_VECTOR_h_1
+  LD A, INT_VECTOR_h_1   ; #BD
 .init_loop:
   LD (HL),A
   INC HL
