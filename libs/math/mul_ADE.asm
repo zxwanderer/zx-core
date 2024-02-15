@@ -1,3 +1,6 @@
+  ifndef _MUL_ADE_ASM_
+  define _MUL_ADE_ASM_
+
 ; А - индекс
 ; DE - размер данных
 ; на выходе HL = A*DE
