@@ -3,7 +3,8 @@
 
 	include "../stack/push_pop_h.asm"
 
-	MACRO SET_IM2 _intTab, _vector
+; заполнить таблицу _initTab указателями на _vector_vector
+	MACRO IM2_INIT _intTab, _vector
 	  ld hl,_intTab
 	  ld de,_intTab+1
 	  ld bc,0x100
