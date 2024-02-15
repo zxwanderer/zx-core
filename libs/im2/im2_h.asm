@@ -27,21 +27,21 @@ INT_ROUTINE_END equ INT_ROUTINE + 3
 
   LD HL, vector?
   LD B,0
-  LD A, (high INT_VECTOR)+1
+  LD A, INT_VECTOR_h_1
 .init_loop:
   LD (HL),A
   INC HL
   DJNZ .init_loop
   LD (HL),A
-  LD H,(high INT_VECTOR)+1
+  LD H, INT_VECTOR_h_1
   LD L,H
   LD (HL),#C3
   INC HL
-  LD DE,interrupt_routine?
+  LD DE, interrupt_routine?
   LD (HL),E
   INC HL
   LD (HL),D
-  LD A,high INT_VECTOR
+  LD A, INT_VECTOR_h
   LD I,A
   IM 2
   EI
