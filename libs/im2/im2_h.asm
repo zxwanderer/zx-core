@@ -1,12 +1,57 @@
  	ifndef _IM2_H_
   define _IM2_H_
 
-; _intTab must be aligned 256 (#BC00)
-; _vector must be high _vector = low _vector  (#BEBE)
-
 	include "../stack/push_pop_h.asm"
 
+; логика вычислений адресов:
+; INT_VECTOR_h equ high INT_VECTOR
+; INT_VECTOR_h_1 equ INT_VECTOR_h + 1
+; INT_VECTOR_END equ INT_VECTOR + 257
+
+; INT_ROUTINE equ INT_VECTOR_h_1 * 256 + INT_VECTOR_h_1
+; INT_ROUTINE_END equ INT_ROUTINE + 3
+
+	; инициализация прерываний, честно взято из исходников демки Survivesection
+	; таблицу прерываний INT_VECTOR заполняем указателями на INT_ROUTINE
+	; по адресу INT_ROUTINE располагается переход на interrupt_routine, которая уже может быть
+	; по любому адресу
+	; 
+	; Для использования должна быть определена переменная 
+	MACRO IM2_INIT_JP vector?, interrupt_routine? 
+INT_VECTOR_h equ high vector?
+INT_VECTOR_h_1 equ INT_VECTOR_h + 1
+INT_VECTOR_END equ vector? + 257
+
+INT_ROUTINE equ INT_VECTOR_h_1 * 256 + INT_VECTOR_h_1
+INT_ROUTINE_END equ INT_ROUTINE + 3
+
+  DI
+  LD HL, vector?
+  LD B,0
+  LD A, (high INT_VECTOR)+1
+.init_loop:
+  LD (HL),A
+  INC HL
+  DJNZ .init_loop
+  LD (HL),A
+  LD H,(high INT_VECTOR)+1
+  LD L,H
+  LD (HL),#C3
+  INC HL
+  LD DE,interrupt_routine?
+  LD (HL),E
+  INC HL
+  LD (HL),D
+  LD A,high INT_VECTOR
+  LD I,A
+  IM 2
+  EI
+  RET
+	ENDM
+
 ; заполнить таблицу _initTab указателями на _vector_vector
+; _intTab must be aligned 256 (#BC00)
+; _vector must be high _vector = low _vector  (#BEBE)
 	MACRO IM2_INIT _intTab, _vector
 	  ld hl,_intTab
 	  ld de,_intTab+1
