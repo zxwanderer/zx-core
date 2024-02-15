@@ -23,6 +23,7 @@ ORG _intTab
     ENDM
 
 	MACRO IM2_ROUTINES_ORG_START _vector
+	ASSERT $ < _vector
 ORG _vector
 		DI
 		LD (_im2_sp_addr), SP
@@ -36,3 +37,30 @@ _im2_sp_addr: equ $+1
   	EI
   	RET
 		ENDM
+
+
+; Example here :
+; 
+; INT_VECTOR equ #BEBE
+; INT_TABLE equ $BD00
+; 
+; ...
+; di
+; IM2_INIT INT_TABLE, INIT_VEC
+; ei
+; 
+; ...
+; 
+; // ------------- interrupt tabs
+; IM2_ORG_VECTOR_TABLE INT_TABLE
+; 
+; // ------------- im2 routines
+; IM2_ROUTINES_ORG_START INIT_VEC
+; ld sp, Im2_internal_stack
+; 
+; ...
+; 
+; IM2_ROUTINES_END
+; 
+; ds 100,0
+; Im2_internal_stack equ $-1
