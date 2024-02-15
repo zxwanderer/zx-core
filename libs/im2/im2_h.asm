@@ -25,11 +25,14 @@ ORG _intTab
 	MACRO IM2_ROUTINES_ORG_START _vector
 ORG _vector
 		DI
+		LD (_im2_sp_addr), SP
 		DO_PUSH_ALL_REGISTRY
 		ENDM
 
 	MACRO IM2_ROUTINES_END
   	DO_POP_ALL_REGISTRY
+_im2_sp_addr: equ $+1
+		LD SP, #0000
   	EI
   	RET
 		ENDM

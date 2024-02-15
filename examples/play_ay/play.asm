@@ -15,6 +15,7 @@ start:
 
 	IM2_INIT INT_TABLE, INIT_VEC
 	ei
+	ld sp, #4100
 
 loop:
 	ld a, r
@@ -28,11 +29,10 @@ loop:
 
 // ------------- im2 routines
 	ASSERT $ < INIT_VEC
-	ORG INIT_VEC
-interr:	
-	di
-	DO_PUSH_ALL_REGISTRY
-	
+	IM2_ROUTINES_ORG_START INIT_VEC
+
+	ld sp, Im2_internal_stack
+
 	ld a, 1
 	out (#fe), a
 	
@@ -41,16 +41,14 @@ interr:
 	ld a, 2
 	out (#fe), a
 
-	DO_POP_ALL_REGISTRY
-	ei
-	ret
+	IM2_ROUTINES_END
+
+	ds 100,0
+Im2_internal_stack equ $-1
 
 	display 'PAGE0 end: ', $
 	display /d, 'Total bytes used: ', $ - start
 
-	; build
-	; if (_ERRORS == 0 && _WARNINGS == 0)
 		savesna SNA_FILENAME, start			; SNA_FILENAME defined in Makefile
 		savebin BIN_FILENAME, start, $-start 	; BIN_FILENAME defined in Makefile
-	; endif
   
