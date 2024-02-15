@@ -44,7 +44,6 @@ INT_ROUTINE_END equ INT_ROUTINE + 3
   LD A, INT_VECTOR_h
   LD I,A
   IM 2
-  EI
 	ENDM
 
 ; заполнить таблицу _initTab указателями на _vector_vector
