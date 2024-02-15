@@ -13,3 +13,5 @@ mul_ADE:
 	ADD HL, DE
 	DJNZ .mul_ADE_loop
 	RET
+
+	endif
