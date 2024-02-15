@@ -1,3 +1,6 @@
+  ifndef _SET_COLORS_ASM_
+  define _SET_COLORS_ASM_
+
 ; SCREEN_ATTR_ADDR must be defined
 
 SCREEN_SET_COLORS:
@@ -7,3 +10,5 @@ SCREEN_SET_COLORS:
   LD BC,768
   LDIR
   RET
+
+  endif
