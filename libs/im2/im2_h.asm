@@ -1,3 +1,6 @@
+ 	ifndef _IM2_H_
+  define _IM2_H_
+
 ; _intTab must be aligned 256 (#BC00)
 ; _vector must be high _vector = low _vector  (#BEBE)
 
@@ -64,3 +67,4 @@ _im2_sp_addr: equ $+1
 ; 
 ; ds 100,0
 ; Im2_internal_stack equ $-1
+	endif
