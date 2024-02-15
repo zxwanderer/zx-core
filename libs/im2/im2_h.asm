@@ -19,7 +19,7 @@
   	ENDM
 
     MACRO IM2_ORG_VECTOR_TABLE _intTab
-ORG _intTab
+	ORG _intTab
     align 256
 	ASSERT $ == _intTab
     ds 257,0
@@ -27,7 +27,7 @@ ORG _intTab
 
 	MACRO IM2_ROUTINES_ORG_START _vector
 	ASSERT $ < _vector
-ORG _vector
+	ORG _vector
 		DI
 		LD (_im2_sp_addr), SP
 		DO_PUSH_ALL_REGISTRY
