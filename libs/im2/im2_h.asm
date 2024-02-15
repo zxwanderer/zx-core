@@ -25,7 +25,6 @@ INT_VECTOR_END equ vector? + 257
 INT_ROUTINE equ INT_VECTOR_h_1 * 256 + INT_VECTOR_h_1
 INT_ROUTINE_END equ INT_ROUTINE + 3
 
-  DI
   LD HL, vector?
   LD B,0
   LD A, (high INT_VECTOR)+1
