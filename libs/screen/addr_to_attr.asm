@@ -1,5 +1,5 @@
-  ifndef _CLEAR_ROWS_ASM_
-  define _CLEAR_ROWS_ASM_
+  ifndef _ADDR_TO_ATTR_ASM_
+  define _ADDR_TO_ATTR_ASM_
 
 ; процедура пересчета адреса в экранной области
 ; в адрес в области атрибутов
