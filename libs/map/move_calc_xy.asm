@@ -1,6 +1,8 @@
   ifndef _MOVE_CALC_XY_ASM_
   define _MOVE_CALC_XY_ASM_
 
+  include "./Directions_h.asm"
+
  MACRO m_check_left
     LD A,D
     DEC A
