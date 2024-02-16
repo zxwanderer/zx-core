@@ -1,3 +1,6 @@
+  ifndef _VIEW_CENTER_ASM_
+  define _VIEW_CENTER_ASM_
+
 ; На входе координаты ячейки которую хотим поместить в центр вывода на экране
 ; На выходе координаты левого верхнего угла обзорного окна на карте
 ; Вход: DE - pos,  D - x, E - y
@@ -32,3 +35,5 @@ VIEW_CALC_LOOK_AT_CENTER:
   LD E, A
 .center_map_end:
   RET
+
+  endif
