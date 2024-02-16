@@ -1,3 +1,6 @@
+  ifndef _MOVE_CALC_XY_ASM_
+  define _MOVE_CALC_XY_ASM_
+
  MACRO m_check_left
     LD A,D
     DEC A
@@ -98,3 +101,5 @@ check_right:
 check_center:
 check_act_yes:
     retTrue
+
+  endif
