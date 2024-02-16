@@ -1,3 +1,6 @@
+  ifndef _COPY_TU_BUFFER__ASM_
+  define _COPY_TU_BUFFER__ASM_
+
 ; копируем тайлы из карты в массив отрисовки
 ; в HL указатель на индекс первого тайла карты
 COPY_TO_BUFFER:
@@ -41,3 +44,4 @@ no_copy_cell:
   DJNZ copy_loop2
   RET
   
+  endif
