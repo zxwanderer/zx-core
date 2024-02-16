@@ -1,3 +1,6 @@
+  ifndef _CLEAR_ROWS_ASM_
+  define _CLEAR_ROWS_ASM_
+
 ; Очистить N строчек экрана
 ; На входе:
 ;   в DE - начальный адрес экрана
@@ -25,3 +28,5 @@ SCREEN_CLEAR_ROWS:
   POP BC
   DJNZ .loop0
   RET
+
+    endif
