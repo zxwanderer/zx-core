@@ -1,3 +1,5 @@
+  ifndef _TABLE_SCAN_BY_INDEX_PTR_ASM_
+  define _TABLE_SCAN_BY_INDEX_PTR_ASM_
 
   include "../registers/hl_ptr_to_hl_h.asm"
   include "../result/set_result.asm"
@@ -31,3 +33,5 @@ TABLE_SCAN_BY_INDEX_PTR:
   INC HL ; передвигаем с действия на указатель
   HL_PTR_TO_HL
   retTrue
+
+  endif
