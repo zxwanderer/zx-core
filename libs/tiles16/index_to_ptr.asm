@@ -1,3 +1,6 @@
+  ifndef _INDEX_TO_PTR_ASM_
+  define _INDEX_TO_PTR_ASM_
+
 ; TILE_SET - указатель на начало спрайтов
 ; переводим индекс карты в указатель на начало данных спрайта
 ; A - номер спрайта
@@ -17,3 +20,5 @@ TILE16_INDEX_TO_PTR:
   LD BC, TILE_SET; указатель на начало спрайтов
   ADD HL, BC
   RET
+
+  endif
