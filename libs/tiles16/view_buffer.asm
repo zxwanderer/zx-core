@@ -1,3 +1,8 @@
+  ifndef _VIEW_BUFFER_ASM_
+  define _VIEW_BUFFER_ASM_
+
   DUP TILE_SCR_WIDTH*TILE_SCR_HEIGTH
   defb #01
   EDUP
+
+  endif
