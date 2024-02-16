@@ -1,3 +1,6 @@
+  ifndef _TILE16_SHOW_SCREEN_ASM_
+  define _TILE16_SHOW_SCREEN_ASM_
+
 ; по текущему адресу тайла на экране получаем адрес тайла справа от него
 ; в DE - адрес тайла на экране
 ; на выходе в DE адрес следующего справа тайла на экране
@@ -54,3 +57,5 @@ draw_loop1:
   DJNZ draw_loop2
 
   RET
+
+    endif
