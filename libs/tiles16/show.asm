@@ -1,3 +1,6 @@
+   ifndef _TILE16_SHOW_ASM_
+   define _TILE16_SHOW_ASM_
+   
 ;показываем 1 тайл на карте
 ;HL - указатель на спрайт
 ;DE - экранный адрес
@@ -44,3 +47,5 @@ _my_spr_loop_2:
      LDI
      LDI
      RET
+
+      endif
