@@ -1,3 +1,6 @@
+  ifndef _CLEAR_ROWS_ASM_
+  define _CLEAR_ROWS_ASM_
+
 ; процедура пересчета адреса в экранной области
 ; в адрес в области атрибутов
 ; Вход:
@@ -13,3 +16,5 @@ SCREEN_ADDR_TO_ATTR:
 	ADD A,SCREEN_ATTR_ADDR/#100
 	LD D,A
 	RET
+
+	endif

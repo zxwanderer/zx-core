@@ -1,6 +1,8 @@
    ifndef _TILE16_SHOW_ASM_
    define _TILE16_SHOW_ASM_
    
+   include "../screen/addr_to_attr.asm"
+
 ;показываем 1 тайл на карте
 ;HL - указатель на спрайт
 ;DE - экранный адрес

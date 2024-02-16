@@ -1,3 +1,6 @@
+  ifndef _SCREEN_CALC_DOWN_POS_
+  define _SCREEN_CALC_DOWN_POS_
+
 ; перемещаемся вниз на одно знакоместо
 ; Вход: 
 ; 	DE- экранный адрес
@@ -13,3 +16,4 @@ SCREEN_CALC_DOWN_POS:
 	LD D,A 
 	RET
  
+	endif

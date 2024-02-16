@@ -1,3 +1,6 @@
+	ifndef _SCREEN_CLEAR_ASM_
+	define _SCREEN_CLEAR_ASM_
+
 ; SCREEN_ADDR must be defined
 
 SCREEN_CLEAR:
@@ -10,3 +13,5 @@ SCREEN_CLEAR:
 	LD (HL),#47
 	LDIR
   RET
+
+	endif
