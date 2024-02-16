@@ -1,3 +1,6 @@
+		ifndef _KEYBOARD_SCAN_KEYS_ASM_
+   	define _KEYBOARD_SCAN_KEYS_ASM_
+	
 	; принцип честно стырен из движка Wanderers by SamStyle
 	; в HL указатель на таблицу клавиш вида [SCANCODE_XXX] [##, ##], 0 - признак окончания таблицы
 	; на выходе в DE указатель на процедуру #### или флаг переноса ноль (JP NZ, call_script_call..)
@@ -16,3 +19,5 @@ KEYBOARD_SCAN_KEYS:
 	jr nz,KEYBOARD_SCAN_KEYS
 	or 2
 	ret
+
+	endif

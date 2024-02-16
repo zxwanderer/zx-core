@@ -1,3 +1,6 @@
+   ifndef _KEY_SCANCODE_H_
+   define _KEY_SCANCODE_H_
+
 ; input joy keys
 BUTTON_NO      equ %00000
 BUTTON_UP      equ %00001
@@ -61,3 +64,5 @@ DEFINE KEY_C dw 0x08fe
 DEFINE KEY_X dw 0x04fe
 DEFINE KEY_Z dw 0x02fe
 DEFINE KEY_CAPS_SHIFT dw 0x01fe
+
+  endif

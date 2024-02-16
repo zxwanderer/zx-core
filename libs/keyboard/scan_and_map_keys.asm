@@ -1,3 +1,6 @@
+   ifndef _KEYBOARD_SCAN_AND_MAP_KEYS_ASM_
+   define _KEYBOARD_SCAN_AND_MAP_KEYS_ASM_
+	
 	; принцип честно стырен из движка Wanderers by SamStyle
 	; в HL указатель на таблицу клавиш вида [SCANCODE_XXX] [BUTTON_XXX], 0 - признак окончания таблицы
 	; на выходе в KEYBOARD_PRESS_BUTTON код нажатой псевдокнопки джойстика
@@ -19,3 +22,5 @@ scanKeys_loop:
 	RET
 
 KEYBOARD_PRESS_BUTTON: defb 0
+
+	endif

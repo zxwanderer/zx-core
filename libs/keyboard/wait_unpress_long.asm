@@ -1,3 +1,6 @@
+		ifndef _KEYBOARD_WAIT_UNPRESS_LONG_ASM_
+   	define _KEYBOARD_WAIT_UNPRESS_LONG_ASM_
+
 ; Получить примерную длительность нажатия клавиши
 ; На выходе:
 ;   DE - условная длительность нажатия, максимальное значение #FFFF
@@ -16,3 +19,5 @@ KEYBOARD_WAIT_UNPRESS_LONG:
   and 31
   jr nz, .wait_uppress
   ret
+
+  endif
