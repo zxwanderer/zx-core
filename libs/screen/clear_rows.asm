@@ -1,6 +1,8 @@
   ifndef _CLEAR_ROWS_ASM_
   define _CLEAR_ROWS_ASM_
 
+  include "./calc_down_pos.asm"
+
 ; Очистить N строчек экрана
 ; На входе:
 ;   в DE - начальный адрес экрана
