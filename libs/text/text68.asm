@@ -1,3 +1,6 @@
+  ifndef _TEXT68_ASM_
+  define _TEXT68_ASM_
+
   MODULE Text68
 
 ; переводим при печати на одну строчку вниз
@@ -95,3 +98,5 @@ PR1:
   RET
 
   ENDMODULE
+
+  endif
