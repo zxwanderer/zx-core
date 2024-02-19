@@ -1,3 +1,6 @@
+    ifndef _PRINT_NUMBER_HEX_ASM_
+    define _PRINT_NUMBER_HEX_ASM_
+
 ; Из журнала Deja Vu #04, Кемерово, 01.04.98
 ;  (c)Колотов Сеpгей, г.Шадpинск, SerzhSoft
 
@@ -40,3 +43,5 @@ GO_PHL:
     ; RST     #10           ;печать HEX-цифры ("0".."F")
     POP     AF            ;восстановили A со стека
     RET                   ;выход из процедуры
+
+        endif

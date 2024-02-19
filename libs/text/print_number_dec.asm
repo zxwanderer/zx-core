@@ -1,3 +1,6 @@
+    ifndef _PRINT_NUMBER_DEC_ASM_
+    define _PRINT_NUMBER_DEC_ASM_
+
 ; Из журнала Deja Vu #04, Кемерово, 01.04.98
 ;  (c)Колотов Сеpгей, г.Шадpинск, SerzhSoft
 
@@ -43,3 +46,5 @@ DECTB_W  ;Таблица степеней десятки;
     dw 100
     dw 10
     dw 1
+
+        endif
