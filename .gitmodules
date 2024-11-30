@@ -7,3 +7,6 @@
 [submodule "external_sources/qr-code-generator"]
 	path = external_sources/qr-code-generator
 	url = https://github.com/zxwanderer/qr-code-generator
+[submodule "external_sources/psg_compressor"]
+	path = external_sources/psg_compressor
+	url = https://github.com/zxwanderer/psg_compressor.git
