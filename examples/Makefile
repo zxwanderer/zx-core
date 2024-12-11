@@ -24,3 +24,7 @@ run_demo:
 
 run_long_press:
 	$(MAKE) -C ./long_press/ run
+
+run_play_psg:
+	$(MAKE) -C ./play_psg/ run
+	
